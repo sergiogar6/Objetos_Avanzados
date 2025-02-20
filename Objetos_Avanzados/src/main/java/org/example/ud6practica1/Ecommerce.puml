@@ -1,0 +1,44 @@
+@startuml
+class Tienda {
+    + realizarPago(metodo: MetodoPago, importe: double): void
+    + iniciarPago(): void
+    + preguntarTexto(mensaje: String): String
+    + preguntarImporte(): double
+}
+
+abstract class MetodoPago {
+    + procesarPago(importe: double): void
+}
+
+class TarjetaCredito {
+    - num_tarjeta: String
+    - tipo: String
+    - tipos_validos: String[]
+    - longitud_num: int = 16
+    + TarjetaCredito()
+    + procesarPago(importe: double): void
+    + validarTarjeta(): boolean
+}
+
+class Bizum {
+    - telefono: String
+    - longitud_telefono: int = 9
+    - pin: int
+    + Bizum()
+    + procesarPago(importe: double): void
+    + validarBizum(): boolean
+}
+
+class PayPal {
+    - cuenta: String
+    - saldo: double
+    - formato_cuenta: String = "^[A-Za-z0-9+_.-]+@+^[A-Za-z0-9+_.-]+.com$"
+    + procesarPago(importe: double): void
+    + validarPaypal(importe: double): boolean
+}
+
+Tienda --> MetodoPago : "Usa"
+MetodoPago <|-- TarjetaCredito
+MetodoPago <|-- Bizum
+MetodoPago <|-- PayPal
+@enduml

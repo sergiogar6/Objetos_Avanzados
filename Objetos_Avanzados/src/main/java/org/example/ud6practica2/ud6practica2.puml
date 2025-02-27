@@ -1,0 +1,80 @@
+@startuml
+
+interface FuncionesIntegrantes {
+    void concentrarse()
+    void viajar(String ciudad)
+    void celebrarGol()
+}
+
+abstract class MutxamelFC implements FuncionesIntegrantes {
+    - String nombre
+    - int edad
+    +void concentrarse()
+    +void viajar(String ciudad)
+    +void celebrarGol()
+}
+
+class Masajista extends MutxamelFC {
+    - String titulacion
+    - int edad
+    + Masajista(String titulacion, int edad)
+    + String getTitulacion()
+    + void setTitulacion(String titulacion)
+    + int getEdad()
+    + void setEdad(int edad)
+    + void darMasaje(Jugador jugador)
+}
+
+class Acompañante extends MutxamelFC {
+    - Jugador integrante
+    - String parentesco
+    + Acompañante(Jugador integrante, String parentesco)
+    + Jugador getIntegrante()
+    + void setIntegrante(Jugador integrante)
+    + String getParentesco()
+    + void setParentesco(String parentesco)
+    + void animarEquipo()
+}
+
+class Jugador extends MutxamelFC implements AccionesDeportivas {
+    - Equipos categoria
+    - int dorsal
+    - Posiciones posicion
+    + Jugador(Equipos categoria, int dorsal, Posiciones posicion)
+    + Equipos getCategoria()
+    + void setCategoria(Equipos categoria)
+    + int getDorsal()
+    + void setDorsal(int dorsal)
+    + Posiciones getPosicion()
+    + void setPosicion(Posiciones posicion)
+    + void calentar()
+    + void descansar()
+    + void marcarGol()
+    + void entrenar()
+    + void jugarPartido(String rival)
+}
+
+class Entrenador extends MutxamelFC implements AccionesDeportivas {
+    - Equipos equipo
+    - String formacionPreferida
+    + Entrenador(Equipos equipo, String formacionPreferida)
+    + Equipos getEquipo()
+    + void setEquipo(Equipos equipo)
+    + String getFormacionPreferida()
+    + void setFormacionPreferida(String formacionPreferida)
+    + void planificarEntrenamiento()
+    + void hacerCambios()
+    + void entrenar()
+    + void jugarPartido(String rival)
+}
+
+enum Equipos {
+    BENJAMIN, ALEVIN, INFANTIL, CADETE, JUVENIL, SENIOR
+}
+
+interface AccionesDeportivas {
+    void entrenar()
+    void jugarPartido(String rival)
+}
+
+@enduml

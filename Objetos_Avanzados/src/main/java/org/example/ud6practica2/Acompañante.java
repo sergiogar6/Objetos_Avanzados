@@ -4,7 +4,8 @@ public class Acompañante extends MutxamelFC {
     private Jugador integrante;
     private String parentesco;
 
-    public Acompañante(Jugador integrante, String parentesco) {
+    public Acompañante(String nombre, int edad, Jugador integrante, String parentesco) {
+        super(nombre, edad);
         this.integrante = integrante;
         this.parentesco = parentesco;
     }
@@ -26,6 +27,6 @@ public class Acompañante extends MutxamelFC {
     }
 
     public void animarEquipo() {
-
+        System.out.println(this.nombre + " el acompañante de " + integrante.getNombre() + " anima al equipo");
     }
 }
